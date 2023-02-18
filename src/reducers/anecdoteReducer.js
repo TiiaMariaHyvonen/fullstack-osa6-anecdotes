@@ -35,15 +35,26 @@ const reducer = (state = initialState, action) => {
           ane.id !== id ? ane : changedAnecdote)
       default:
         return initialState
-    
+    case 'NEW_ANECDOTE':
+      return state.concat(action.payload)
   }
 }
-
 
 export const addVote = (id) => {
   return {
     type: 'VOTE',
     payload: {id}
+  }
+}
+
+export const createAnecdote = (content) => { 
+  return {
+    type: 'NEW_ANECDOTE',
+    payload: {
+      content,
+      id: getId(),
+      votes: 0
+    }
   }
 }
 
